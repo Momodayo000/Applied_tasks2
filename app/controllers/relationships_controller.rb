@@ -10,6 +10,18 @@ class RelationshipsController < ApplicationController
     redirect_to request.referer
   end
 
+  def follow(user_id)
+    followers.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    followers.find_by(followed_id: user_id).destroy
+  end
+
+  def following?(user)
+    following_users.include?(user)
+  end
+
    # フォロー一覧
   def followings
     user = User.find(params[:user_id])
