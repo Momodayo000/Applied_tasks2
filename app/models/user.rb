@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :read_counts, dependent: :destroy
 
   def follow(user_id)
     followers.create(followed_id: user_id)
